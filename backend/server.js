@@ -7,7 +7,7 @@ require('dotenv').config();
 const app = express();
 
 const allowedOrigins = [
-  'https://your-frontend.vercel.app', // ✅ Your live frontend
+  'https://lms-platform-wine-psi.vercel.app/', // ✅ Your live frontend
   'http://localhost:5173',            // ✅ For local dev
   'http://localhost:3000'
 ];
