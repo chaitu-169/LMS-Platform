@@ -6,8 +6,23 @@ const bcrypt = require('bcryptjs');
 require('dotenv').config();
 const app = express();
 
+const allowedOrigins = [
+  'https://your-frontend.vercel.app', // ✅ Your live frontend
+  'http://localhost:5173',            // ✅ For local dev
+  'http://localhost:3000'
+];
+
 // Middleware
-app.use(cors());
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+}));
 app.use(express.json());
 
 // MongoDB Connection
@@ -636,7 +651,9 @@ app.get('/api/health', (req, res) => {
 });
 
 // Start server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+if (process.env.NODE_ENV !== 'production') {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
+}
