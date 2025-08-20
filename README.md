@@ -2,7 +2,7 @@
 
 A modern, responsive Learning Management System built with React, TypeScript, and Tailwind CSS, designed to work with a MongoDB backend.
 ---
-## Live Demo -
+## Live Demo - https://lms-platform-wine-psi.vercel.app/
 ![Preview](preview.png)
 
 ---
